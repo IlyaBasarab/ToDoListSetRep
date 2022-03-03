@@ -73,7 +73,7 @@ namespace ToDoListSet
 
 
                     case 7:
-
+                        manager.ShowSortNeverRepeated();
                         break;
 
 
