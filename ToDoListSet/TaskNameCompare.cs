@@ -10,7 +10,7 @@ namespace ToDoListSet
         {
             public int Compare(TaskItem t1, TaskItem t2)
             {
-                return t1.GetTaskName().CompareTo(t2.GetTaskName());
+                return t1.task.Name.CompareTo(t2.task.Name);
             }
         }
     }

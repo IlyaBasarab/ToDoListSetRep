@@ -98,7 +98,7 @@ namespace ToDoListSet
         public void DeleteTask(int id)
         {
             activeTasks.RemoveAt(id);
-            Console.WriteLine(id+" removed from active.");
+            Console.WriteLine("Task removed from active.");
         }
 
         public void ShowUnique()
