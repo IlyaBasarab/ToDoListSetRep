@@ -21,7 +21,7 @@ namespace ToDoListSet
         
         public override string ToString()
         {
-            return "Id: "+id + '\n' + " task name: " + task.Name + '\n'+ "Task status: " + task.Status + '\n' + "  Amount: "+amount +'\n' ;
+            return "Id: "+id + '\n' + "Task name: " + task.Name + '\n'+ "Task description: "+task.Description + '\n' + "Task status: " + task.Status + '\n' + "Amount: "+amount +'\n' ;
         }
     }
 }

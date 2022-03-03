@@ -43,8 +43,10 @@ namespace ToDoListSet
                 }
 
                 item.amount += 1;
-                activeTasks[idx] = item;
-                Console.WriteLine("Task already exist: " + item.task.Name + " new amount  " + item.amount);
+                activeTasks[idx].amount = item.amount;
+                activeTasks.Add(new TaskItem(indx,new Task(true,name,description),item.amount));
+                indx++;
+                Console.WriteLine("Task created: " + item.task.Name + " same name tasks amount  " + item.amount);
                     
             }
 
@@ -117,9 +119,12 @@ namespace ToDoListSet
 
         public void ShowSortRepeated()
         {
-            foreach(TaskItem item in activeTasks)
+            SortedSet<TaskItem> sortRepeated = new SortedSet<TaskItem>(new TaskNameCompare());
+
+            foreach (TaskItem item in activeTasks)
             {
                 if (item.amount > 1)
+                    sortRepeated.Add(item);
                     Console.WriteLine(item.ToString());
             }
 
@@ -129,15 +134,21 @@ namespace ToDoListSet
         {
 
             SortedSet<TaskItem> sort = new SortedSet<TaskItem>(new TaskNameCompare());
+
+
+            sort.UnionWith(activeTasks);
+            sort.UnionWith(doneTasks);
+
+            SortedSet<TaskItem> sortRepeated = new SortedSet<TaskItem>(new TaskNameCompare());
+
             foreach (TaskItem item in activeTasks)
             {
-                sort.Add(item);
+                if (item.amount > 1)
+                    sortRepeated.Add(item);
+               
             }
 
-            foreach (TaskItem item in doneTasks)
-            {
-                sort.Add(item);
-            }
+            sort.SymmetricExceptWith(sortRepeated);
 
             foreach(TaskItem item in sort)
             { Console.WriteLine(item.ToString()); }    
